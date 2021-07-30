@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="css/angry.css">
+    <title>Document</title>
+    
+</head>
+<body>
+<img  class="restart" src="images/restart1.png" width=40 height=40 alt="restart">
+</body>   
+<script type="text/javascript" src="js/matter.js"></script>
+    <script src="js/angry.js"></script>
+    <script src="js/p5.js"></script>
+    <script src="js/box.js"></script>
+    <script src="js/bird.js"></script>
+    <script src="js/slingshot.js"></script>
+    <script src="js/pig.js"></script>
+    <script src="js/t.js"></script>
+    <script src="js/p5.sound.js"></script>
+    <script>
+    var image1=document.getElementsByClassName("restart")[0];
+    image1.addEventListener("click",()=>{
+        image1.style.display="none";
+        setTimeout(()=>{
+           window.location.reload();
+        },150)
+        
+    })
+    
+    </script>
+
+</html>

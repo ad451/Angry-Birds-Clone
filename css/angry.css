@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+
+}
+.restart{
+    position: absolute;
+    left: 1067px;
+    top: 100px;
+    z-index: 1;
+    border-radius: 10px;
+}
