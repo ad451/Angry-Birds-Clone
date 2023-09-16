@@ -39,10 +39,13 @@ function setup() {
   
   // entities
   bird1 = new character(200, 300, 10, 0.5,red);
+  bird2 = new character(200, 700, 30,0.5,terrence);
+
   pig1 = new character(700, 400, 10, 0,pig);
   pig2 = new character(800, 400, 20, 0,pig);
   box1 = new box(800, 420, 50, 50);
   box2 = new box(700, 420, 50, 50);
+  currentBird=bird1;
   slingshot = new SlingShot(200, 300, bird1.body);
   ground = Bodies.rectangle(0, 460, 1800, 40, { isStatic: true })
 
@@ -50,7 +53,7 @@ function setup() {
   bird1.body.speed = bird1.body.speed * 1.5;
 
  //mouse options
-  mouse = Mouse.create(canvas.elt);
+  const mouse = Mouse.create(canvas.elt);
   const options = {
     mouse: mouse,
   }
@@ -63,25 +66,27 @@ function setup() {
   console.log(sound);
 }
 
-
+//mouseReleased for Firing operation
 function mouseReleased() {
-  setTimeout(() => {
-
-    if (flag5 == 1) {
+  //bird1 is released 
+  if (mConstraint.body==bird1.body ){
+  setTimeout(() => {  
       slingshot.fire();
-      flag3 = 1;
-    }
-  }, 10);
+      currentBird=bird2;
+  }, 20);
+}
 
-  setTimeout(() => {
-    if (flag6 == 1) {
+//bird2 is released
+if (mConstraint.body==bird2.body ){
+  setTimeout(() => {  
       slingshot.fire();
-      flag3 = 0;
-    }
-  }, 10);
+      currentBird=null;
+  }, 20);
+}
 
+//change the position of the bird2
   setTimeout(() => {
-    if (flag3 == 1) {
+    if (currentBird==bird2) {
       bird2 = new character(200, 300, 30,0.5,terrence);
       slingshot = new SlingShot(200, 300, bird2.body);
     }
@@ -90,6 +95,7 @@ function mouseReleased() {
 
 }
 
+//check for collision between the two objects 
 
 function collision() {
   const pos1 = pig1.body.position;
@@ -111,34 +117,28 @@ function collision() {
 
 }
 
+//draw function to show the different entities 
 function draw() {
 
   background(backgroundImage);
   Engine.update(engine);
+
+
   slingshot.show();
   bird1.show();
-
-  if (bird2) {
-    bird2.show();
-  }
-
   pig1.show();
   pig2.show();
   box1.show();
   box2.show();
+  
 
-  if (mConstraint.body == bird1.body) {
-    flag5 = 1;
+  if (currentBird==bird2 || flag==1) {
+    bird2.show();
+    flag=1;
   }
 
-  if (flag3 == 1) {
-    setTimeout(() => {
-      if (mConstraint.body == bird2.body) {
-        flag6 = 1;
-      }
-    }, 202)
-  }
-
+  
+//detection of collision
   collision();
 
 }

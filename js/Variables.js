@@ -18,15 +18,12 @@ let box2;
 let ground;
 let slingshot;
 
-//mouseContraint
+//mouseContraint 
 let mConstraint;
 
 //flags
-let flag1 = false;
-let flag2 = false;
-let flag3 = 0;
-let flag5 = 0;
-let flag6 = 0;
+let flag = 0;
+let currentBird;
 
 //score variable
 let score = 0;

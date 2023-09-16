@@ -6,7 +6,7 @@ class SlingShot {
           y: y
         },
         bodyB: body,
-        stiffness: 0.03,
+        stiffness: 0.025,
         length:16
       }
       this.sling = Matter.Constraint.create(options);
