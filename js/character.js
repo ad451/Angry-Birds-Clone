@@ -10,7 +10,7 @@ class character {
         }
         this.body = Bodies.circle(x, y, radius, options);
         Matter.Body.setMass(this.body, this.body.mass * 4);
-        World.add(world, this.body);
+        World.add(engine.world, this.body);
 
     }
     show() {

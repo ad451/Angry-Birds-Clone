@@ -1,18 +1,18 @@
 //preload function to intitiate all the required objects
 function preload() {
-  bg = loadImage('../images/back.jpg');
-  img = loadImage('../images/g1.jpg');
+  backgroundImage = loadImage('../images/back.jpg');
   red = loadImage('../images/red.png');
   terrence = loadImage('../images/terence.png');
   pig = loadImage('../images/pig.png');
   sound = loadSound("../music/main_theme.mp3")
+  console.log("preload complete")
 }
 
 //setup function to define the engine params 
 function setup() {
 
   engine = Engine.create();
-  world = engine.world;
+  console.log("Game Started")
   
   let canvas = createCanvas(900, 500);
   let container = createDiv();
@@ -21,7 +21,6 @@ function setup() {
   container.style('height', '100vh');
 
   canvas.parent(container);
-  container.mouseOver(canvasPressed);
 
   //canvas styles
   canvas.style('border', '4px solid black');
@@ -39,7 +38,6 @@ function setup() {
   div1.id('mypara');
   
   // entities
-
   bird1 = new character(200, 300, 10, 0.5,red);
   pig1 = new character(700, 400, 10, 0,pig);
   pig2 = new character(800, 400, 20, 0,pig);
@@ -48,24 +46,23 @@ function setup() {
   slingshot = new SlingShot(200, 300, bird1.body);
   ground = Bodies.rectangle(0, 460, 1800, 40, { isStatic: true })
 
+  //character options
   bird1.body.speed = bird1.body.speed * 1.5;
+
+ //mouse options
   mouse = Mouse.create(canvas.elt);
   const options = {
     mouse: mouse,
   }
   mouse.pixelRatio = pixelDensity();
-  mConstraint = MouseConstraint.create(engine, options);
-  World.add(world, [mConstraint, ground]);
+
+  mConstraint = Matter.MouseConstraint.create(engine, options);
+  World.add(engine.world, [mConstraint, ground]);
+
+  sound.loop();
+  console.log(sound);
 }
 
-
-function canvasPressed() {
-
-  if (flag4 == 0) {
-    sound.loop();
-    flag4 = 1;
-  }
-}
 
 function mouseReleased() {
   setTimeout(() => {
@@ -74,17 +71,13 @@ function mouseReleased() {
       slingshot.fire();
       flag3 = 1;
     }
-
-
   }, 10);
-  setTimeout(() => {
 
+  setTimeout(() => {
     if (flag6 == 1) {
       slingshot.fire();
       flag3 = 0;
     }
-
-
   }, 10);
 
   setTimeout(() => {
@@ -99,8 +92,8 @@ function mouseReleased() {
 
 
 function collision() {
-  pos1 = pig1.body.position;
-  pos2 = pig2.body.position;
+  const pos1 = pig1.body.position;
+  const pos2 = pig2.body.position;
   if ((pos1.x >= 702 || pos1.x <= 698 || pos1.y >= 402 || pos1.x <= 398) && flag1 == false) {
     flag1 = true;
     score=  score+ 1;
@@ -120,12 +113,12 @@ function collision() {
 
 function draw() {
 
-  background(bg);
+  background(backgroundImage);
   Engine.update(engine);
   slingshot.show();
   bird1.show();
 
-  if (bird2 != null) {
+  if (bird2) {
     bird2.show();
   }
 

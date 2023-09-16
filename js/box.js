@@ -6,7 +6,7 @@ class box{
         this.h=h
         this.body=Bodies.rectangle(x,y,w,h);
         this.body.isStatic=true;
-        World.add(world,this.body);
+        World.add(engine.world,this.body);
 
     }
     show() {
