@@ -1,4 +1,4 @@
-class boxy{
+class box{
     constructor(x,y,w,h){
         this.x=x
         this.y=y
@@ -10,7 +10,7 @@ class boxy{
 
     }
     show() {
-        var angle = this.body.angle;
+        const angle = this.body.angle;
         push();
        
         

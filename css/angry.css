@@ -5,7 +5,7 @@
     overflow: hidden;
 
 }
-.restart{
+#restart{
     position: absolute;
     left: 1067px;
     top: 100px;
