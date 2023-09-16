@@ -2,7 +2,6 @@ let bg;
 let img;
 let button;
 let over = false;
-let div1;
 
 //defining the engine 
 let Engine = Matter.Engine,

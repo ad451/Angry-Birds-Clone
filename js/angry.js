@@ -30,7 +30,7 @@ function setup() {
   canvas.style('top', '10%');
 
   //score styles
-  div1 = createP('SCORE : ' + score.toString());
+  const div1 = createP('SCORE : ' + score.toString());
   div1.position(250, 120);
   div1.style('color', 'black')
   div1.style('text-transform', 'uppercase');
@@ -40,15 +40,15 @@ function setup() {
   
   // entities
 
-  bird1 = new bird(200, 300, 10);
-  pig1 = new pigg(700, 400, 10);
-  pig2 = new pigg(800, 400, 20);
+  bird1 = new character(200, 300, 10, 0.5,red);
+  pig1 = new character(700, 400, 10, 0,pig);
+  pig2 = new character(800, 400, 20, 0,pig);
   box1 = new box(800, 420, 50, 50);
   box2 = new box(700, 420, 50, 50);
-
-  bird1.body.speed = bird1.body.speed * 1.5;
   slingshot = new SlingShot(200, 300, bird1.body);
   ground = Bodies.rectangle(0, 460, 1800, 40, { isStatic: true })
+
+  bird1.body.speed = bird1.body.speed * 1.5;
   mouse = Mouse.create(canvas.elt);
   const options = {
     mouse: mouse,
@@ -89,7 +89,7 @@ function mouseReleased() {
 
   setTimeout(() => {
     if (flag3 == 1) {
-      bird2 = new terry(200, 300, 30);
+      bird2 = new character(200, 300, 30,0.5,terrence);
       slingshot = new SlingShot(200, 300, bird2.body);
     }
   }, 200);

@@ -1,13 +1,14 @@
-class bird {
-    constructor(x, y, radius,restitution) {
+class character {
+    constructor(x, y, radius,restitution ,object) {
         this.x = x
         this.y = y
         this.radius = radius
         this.restitution=restitution
+        this.object=object
         const options = {
             restitution: this.restitution
         }
-        this.body = Bodies.circle(x, y, r, options);
+        this.body = Bodies.circle(x, y, radius, options);
         Matter.Body.setMass(this.body, this.body.mass * 4);
         World.add(world, this.body);
 
@@ -19,7 +20,7 @@ class bird {
         translate(pos.x, pos.y);
         rotate(angle);
         imageMode(CENTER);
-        image(red, 0, 0, this.r * 2, this.r * 2);
+        image(this.object, 0, 0, this.radius * 2, this.radius * 2);
         pop();
     }
 
